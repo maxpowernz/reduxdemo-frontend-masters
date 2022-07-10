@@ -16,10 +16,14 @@ export const MenuItem = ({
   price,
   quantity,
   total,
-  updatePrice = () => {},
+  updatePrice,
   updateQuantity = () => {},
-  remove = () => {}
+  remove
 }) => {
+  const validate = (value) => {
+    updatePrice(value);
+  };
+
   return (
     <Card marginTop="space40">
       <Heading variant="heading30" as="h3">
@@ -33,7 +37,10 @@ export const MenuItem = ({
             insertBefore={<div>$</div>}
             value={price}
             type="number"
-            onChange={(event) => updatePrice(event.target.value)}
+            //step="0.01"
+            min="0"
+            max="100"
+            onChange={(event) => validate(event.target.value)}
           />
         </Box>
         <Box padding="space20">
